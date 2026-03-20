@@ -9,7 +9,7 @@ class PrincipalController extends Controller
 {
     public function index()
     {
-        // Obtener noticias ordenadas por fecha
+        // Obtener noticias
         $noticias = Noticia::orderBy('created_at', 'desc')
                             ->paginate(3);
 
