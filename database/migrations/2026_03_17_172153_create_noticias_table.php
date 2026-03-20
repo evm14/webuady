@@ -13,9 +13,12 @@ return new class extends Migration
     {
         Schema::create('noticias', function (Blueprint $table) {
             $table->id();
-            $table->string('titulo');
+             $table->string('titulo');
             $table->text('contenido');
-            $table->string('imagen');
+            $table->foreignId('cat_imagen_id')
+                    ->constrained('cat_imagen')
+                    ->cascadeOnDelete();
+            $table->boolean('estatus')->default(1);
             $table->timestamps();
         });
     }

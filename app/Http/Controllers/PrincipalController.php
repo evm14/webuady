@@ -9,11 +9,13 @@ class PrincipalController extends Controller
 {
     public function index()
     {
-        // Obtener noticias
-        $noticias = Noticia::orderBy('created_at', 'desc')
-                            ->paginate(3);
+        // Noticias ACTIVAS
+        $noticias = Noticia::with('imagen')
+                        ->where('estatus', 1)
+                        ->orderBy('created_at', 'desc')
+                        ->paginate(3);
 
-        // Obtener avisos
+        // Avisos
         $avisos = Aviso::orderBy('created_at', 'desc')
                         ->get();
 

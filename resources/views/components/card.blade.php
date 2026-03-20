@@ -4,7 +4,7 @@
 
         {{-- Imagen --}}
         <img
-            src="{{ asset('img/' . $img) }}"
+            src="{{ asset($img) }}"
             class="card-img-top"
             alt="Imagen de noticia"
         >

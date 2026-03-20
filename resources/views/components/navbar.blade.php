@@ -1,18 +1,18 @@
-<div class="bg-white shadow-sm sticky-top">
+<div class="w-100 bg-white shadow-sm sticky-top">
 
     {{-- HEADER SUPERIOR --}}
     <div class="container-fluid">
 
-        <div class="row align-items-center p-2">
+        <div class="row align-items-center py-2">
 
             {{-- LOGO + LEMA --}}
             <div class="col-md-6 d-flex align-items-center">
 
                 <a href="{{ route('inicio') }}">
-                    <img src="{{ asset('img/logo.png') }}" width="75" alt="Logo UADY">
+                    <img src="{{ asset('img/logo.png') }}" width="75">
                 </a>
 
-                <div class="ms-3 text-primary" style="font-size:15px;">
+                <div class="ms-3 text-primary small">
                     "Luz, Ciencia y Verdad"
                 </div>
 
@@ -32,10 +32,11 @@
 
     </div>
 
-    {{-- MENU DORADO --}}
-    <div class="menu-gold py-2">
 
-        <div class="container text-center">
+    {{-- MENU DORADO --}}
+    <div class="menu-gold py-2 w-100">
+
+        <div class="container-fluid text-center">
 
             <a href="{{ route('inicio') }}" class="gold-btn mx-4">Inicio</a>
             <a href="{{ route('aspirantes') }}" class="gold-btn mx-4">Aspirantes</a>
@@ -47,12 +48,13 @@
 
     </div>
 
+
     {{-- MENU AZUL --}}
-    <nav class="navbar navbar-expand-lg navbar-dark menu-blue">
+    <nav class="navbar navbar-expand-lg navbar-dark menu-blue w-100">
 
         <div class="container-fluid justify-content-center">
 
-            <button 
+            <button
                 class="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
@@ -65,83 +67,46 @@
 
                 <ul class="navbar-nav">
 
-                    {{-- DROPDOWN 1 --}}
                     <li class="nav-item dropdown mx-3">
-
-                        <a class="nav-link dropdown-toggle"
-                           href="#"
-                           role="button"
-                           data-bs-toggle="dropdown"
-                           aria-expanded="false">
-
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             Nuestra Facultad
-
                         </a>
-
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item">Historia</a></li>
                             <li><a class="dropdown-item">Misión y Visión</a></li>
                             <li><a class="dropdown-item">Autoridades</a></li>
                         </ul>
-
                     </li>
 
-                    {{-- DROPDOWN 2 --}}
                     <li class="nav-item dropdown mx-3">
-
-                        <a class="nav-link dropdown-toggle"
-                           href="#"
-                           role="button"
-                           data-bs-toggle="dropdown">
-
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             Oferta Educativa
-
                         </a>
-
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item">Licenciaturas</a></li>
                             <li><a class="dropdown-item">Maestrías</a></li>
                             <li><a class="dropdown-item">Doctorado</a></li>
                         </ul>
-
                     </li>
 
-                    {{-- DROPDOWN 3 --}}
                     <li class="nav-item dropdown mx-3">
-
-                        <a class="nav-link dropdown-toggle"
-                           href="#"
-                           role="button"
-                           data-bs-toggle="dropdown">
-
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             Investigación
-
                         </a>
-
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item">Proyectos</a></li>
                             <li><a class="dropdown-item">Publicaciones</a></li>
                         </ul>
-
                     </li>
 
-                    {{-- DROPDOWN 4 --}}
                     <li class="nav-item dropdown mx-3">
-
-                        <a class="nav-link dropdown-toggle"
-                           href="#"
-                           role="button"
-                           data-bs-toggle="dropdown">
-
+                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             Vinculación
-
                         </a>
-
                         <ul class="dropdown-menu">
                             <li><a class="dropdown-item">Convenios</a></li>
                             <li><a class="dropdown-item">Prácticas</a></li>
                         </ul>
-
                     </li>
 
                 </ul>
