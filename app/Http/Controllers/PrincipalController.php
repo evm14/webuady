@@ -4,24 +4,29 @@ namespace App\Http\Controllers;
 
 use App\Models\Noticia;
 use App\Models\Aviso;
+use App\Models\Banner;
+use App\Models\CatVinculoPrincipal;
 
 class PrincipalController extends Controller
 {
     public function index()
     {
-        // Noticias ACTIVAS
         $noticias = Noticia::with('imagen')
-                        ->where('estatus', 1)
-                        ->orderBy('created_at', 'desc')
+                        ->where('estatus',1)
+                        ->latest()
                         ->paginate(3);
 
-        // Avisos
-        $avisos = Aviso::orderBy('created_at', 'desc')
+        $avisos = Aviso::latest()->get();
+
+        $banners = Banner::with('imagen')
+                        ->where('estatus',1)
+                        ->orderBy('orden')
                         ->get();
 
-        return view(
-            'principal',
-            compact('noticias', 'avisos')
-        );
+        $menu = CatVinculoPrincipal::where('estatus',1)
+            ->orderBy('orden')
+            ->get();
+
+        return view('principal', compact('noticias','avisos','banners','menu'));
     }
 }

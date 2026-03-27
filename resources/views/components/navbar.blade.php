@@ -1,6 +1,8 @@
-<div class="w-100 bg-white shadow-sm sticky-top">
+<div class="bg-white shadow-sm sticky-top">
+
 
     {{-- HEADER SUPERIOR --}}
+
     <div class="container-fluid">
 
         <div class="row align-items-center py-2">
@@ -8,11 +10,11 @@
             {{-- LOGO + LEMA --}}
             <div class="col-md-6 d-flex align-items-center">
 
-                <a href="{{ route('inicio') }}">
-                    <img src="{{ asset('img/logo.png') }}" width="75">
+                <a href="{{ url('/') }}">
+                    <img src="{{ asset('img/logo.png') }}" width="75" alt="Logo UADY">
                 </a>
 
-                <div class="ms-3 text-primary small">
+                <div class="ms-3 text-primary" style="font-size:15px;">
                     "Luz, Ciencia y Verdad"
                 </div>
 
@@ -33,88 +35,100 @@
     </div>
 
 
-    {{-- MENU DORADO --}}
-    <div class="menu-gold py-2 w-100">
 
-        <div class="container-fluid text-center">
+    {{-- MENÚ PRINCIPAL DINÁMICO (DORADO) --}}
 
-            <a href="{{ route('inicio') }}" class="gold-btn mx-4">Inicio</a>
-            <a href="{{ route('aspirantes') }}" class="gold-btn mx-4">Aspirantes</a>
-            <a href="{{ route('estudiantes') }}" class="gold-btn mx-4">Estudiantes</a>
-            <a href="{{ route('docentes') }}" class="gold-btn mx-4">Docentes</a>
-            <a href="{{ route('egresados') }}" class="gold-btn mx-4">Egresados</a>
+    <div class="menu-gold py-2">
+
+        <div class="container text-center">
+
+            @forelse($menu as $item)
+
+                <a href="{{ url($item->url) }}" class="gold-btn mx-4">
+                    {{ $item->nombre }}
+                </a>
+
+            @empty
+
+                {{-- Fallback si no hay datos --}}
+                <span class="text-white">Menú no disponible</span>
+
+            @endforelse
 
         </div>
 
     </div>
 
 
-    {{-- MENU AZUL --}}
-    <nav class="navbar navbar-expand-lg navbar-dark menu-blue w-100">
 
-        <div class="container-fluid justify-content-center">
+    {{-- MENÚ SECUNDARIO (AZUL) --}}
 
-            <button
-                class="navbar-toggler"
-                type="button"
-                data-bs-toggle="collapse"
-                data-bs-target="#menu"
-            >
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <nav class="navbar navbar-expand-lg navbar-dark menu-blue">
 
-            <div id="menu" class="collapse navbar-collapse justify-content-center">
+    <div class="container-fluid justify-content-center">
 
-                <ul class="navbar-nav">
+        <button 
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#menuSecundario">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-                    <li class="nav-item dropdown mx-3">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            Nuestra Facultad
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item">Historia</a></li>
-                            <li><a class="dropdown-item">Misión y Visión</a></li>
-                            <li><a class="dropdown-item">Autoridades</a></li>
-                        </ul>
-                    </li>
+        <div id="menuSecundario" class="collapse navbar-collapse justify-content-center">
 
-                    <li class="nav-item dropdown mx-3">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            Oferta Educativa
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item">Licenciaturas</a></li>
-                            <li><a class="dropdown-item">Maestrías</a></li>
-                            <li><a class="dropdown-item">Doctorado</a></li>
-                        </ul>
-                    </li>
+            <ul class="navbar-nav">
 
-                    <li class="nav-item dropdown mx-3">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            Investigación
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item">Proyectos</a></li>
-                            <li><a class="dropdown-item">Publicaciones</a></li>
-                        </ul>
-                    </li>
+                @foreach($navbar as $item)
 
-                    <li class="nav-item dropdown mx-3">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            Vinculación
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item">Convenios</a></li>
-                            <li><a class="dropdown-item">Prácticas</a></li>
-                        </ul>
-                    </li>
+                    @if($item->hijos->count() > 0)
 
-                </ul>
+                        {{-- PADRE CON DROPDOWN --}}
+                        <li class="nav-item dropdown mx-3">
 
-            </div>
+                            <a class="nav-link dropdown-toggle"
+                               href="#"
+                               data-bs-toggle="dropdown">
+
+                                {{ $item->nombre }}
+
+                            </a>
+
+                            <ul class="dropdown-menu">
+
+                                @foreach($item->hijos as $hijo)
+
+                                    <li>
+                                        <a class="dropdown-item" href="{{ url($hijo->url) }}">
+                                            {{ $hijo->nombre }}
+                                        </a>
+                                    </li>
+
+                                @endforeach
+
+                            </ul>
+
+                        </li>
+
+                    @else
+
+                        {{-- PADRE SIN HIJOS --}}
+                        <li class="nav-item mx-3">
+                            <a class="nav-link" href="{{ url($item->url) }}">
+                                {{ $item->nombre }}
+                            </a>
+                        </li>
+
+                    @endif
+
+                @endforeach
+
+            </ul>
 
         </div>
 
-    </nav>
+    </div>
+
+</nav>
 
 </div>

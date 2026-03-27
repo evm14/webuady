@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use App\Models\CatVinculoPrincipal;
+use App\Models\Navbar;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,29 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        view()->composer('*', function ($view) {
+
+
+            $menu = CatVinculoPrincipal::where('estatus', 1)
+                        ->orderBy('orden')
+                        ->get();
+
+            $navbar = Navbar::whereNotNull('idpadre') // SOLO PADRES
+                        ->whereNull('idhijo')
+                        ->where('estatus', 1)
+                        ->orderBy('orden')
+                        ->with(['hijos' => function ($query) {
+                            $query->whereNotNull('idhijo')
+                                  ->where('estatus', 1)
+                                  ->orderBy('orden');
+                        }])
+                        ->get();
+
+            $view->with([
+                'menu' => $menu,
+                'navbar' => $navbar
+            ]);
+
+        });
     }
 }
