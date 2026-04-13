@@ -1,113 +1,114 @@
-<div class="w-100 bg-white shadow-sm sticky-top">
+<div class="bg-white shadow-sm sticky-top">
 
     {{-- HEADER SUPERIOR --}}
-    <div class="container-fluid">
-
-        <div class="row align-items-center py-2">
+    <div class="container-fluid border-bottom">
+        <div class="row align-items-center py-2 px-3">
 
             {{-- LOGO + LEMA --}}
-            <div class="col-md-6 d-flex align-items-center">
+            <div class="col-12 col-md-6 d-flex align-items-center justify-content-center justify-content-md-start">
 
-                <a href="{{ route('inicio') }}">
-                    <img src="{{ asset('img/logo.png') }}" width="75">
+                <a href="{{ url('/') }}" class="d-flex align-items-center text-decoration-none">
+                    <img src="{{ asset('img/logo.png') }}" width="70" alt="Logo UADY">
+
+                    <span class="ms-3 fw-semibold text-primary" style="font-size:16px;">
+                        "Luz, Ciencia y Verdad"
+                    </span>
                 </a>
-
-                <div class="ms-3 text-primary small">
-                    "Luz, Ciencia y Verdad"
-                </div>
 
             </div>
 
             {{-- ICONOS --}}
-            <div class="col-md-6 text-end">
+            <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end align-items-center gap-3 mt-2 mt-md-0">
 
-                <i class="bi bi-search mx-2"></i>
-                <i class="bi bi-envelope mx-2"></i>
-                <i class="bi bi-calendar mx-2"></i>
-                <i class="bi bi-person mx-2"></i>
+                <i class="bi bi-search fs-5 nav-icon"></i>
+                <i class="bi bi-envelope fs-5 nav-icon"></i>
+                <i class="bi bi-calendar fs-5 nav-icon"></i>
+                <i class="bi bi-person fs-5 nav-icon"></i>
 
             </div>
 
         </div>
-
     </div>
 
 
-    {{-- MENU DORADO --}}
-    <div class="menu-gold py-2 w-100">
+    {{-- MENÚ PRINCIPAL (DORADO) --}}
+    <div class="menu-gold py-2">
+        <div class="container d-flex flex-wrap justify-content-center gap-3">
 
-        <div class="container-fluid text-center">
+            @forelse($menu as $item)
 
-            <a href="{{ route('inicio') }}" class="gold-btn mx-4">Inicio</a>
-            <a href="{{ route('aspirantes') }}" class="gold-btn mx-4">Aspirantes</a>
-            <a href="{{ route('estudiantes') }}" class="gold-btn mx-4">Estudiantes</a>
-            <a href="{{ route('docentes') }}" class="gold-btn mx-4">Docentes</a>
-            <a href="{{ route('egresados') }}" class="gold-btn mx-4">Egresados</a>
+                <a href="{{ url($item->url) }}" class="gold-btn">
+                    {{ $item->nombre }}
+                </a>
+
+            @empty
+
+                <span class="text-white">Menú no disponible</span>
+
+            @endforelse
 
         </div>
-
     </div>
 
 
-    {{-- MENU AZUL --}}
-    <nav class="navbar navbar-expand-lg navbar-dark menu-blue w-100">
+    {{-- MENÚ SECUNDARIO (AZUL) --}}
+    <nav class="navbar navbar-expand-lg navbar-dark menu-blue py-2">
 
-        <div class="container-fluid justify-content-center">
+        <div class="container justify-content-center">
 
-            <button
+            <button 
                 class="navbar-toggler"
                 type="button"
                 data-bs-toggle="collapse"
-                data-bs-target="#menu"
-            >
+                data-bs-target="#menuSecundario">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div id="menu" class="collapse navbar-collapse justify-content-center">
+            <div id="menuSecundario" class="collapse navbar-collapse justify-content-center">
 
-                <ul class="navbar-nav">
+                <ul class="navbar-nav align-items-center">
 
-                    <li class="nav-item dropdown mx-3">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            Nuestra Facultad
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item">Historia</a></li>
-                            <li><a class="dropdown-item">Misión y Visión</a></li>
-                            <li><a class="dropdown-item">Autoridades</a></li>
-                        </ul>
-                    </li>
+                    @foreach($navbar as $item)
 
-                    <li class="nav-item dropdown mx-3">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            Oferta Educativa
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item">Licenciaturas</a></li>
-                            <li><a class="dropdown-item">Maestrías</a></li>
-                            <li><a class="dropdown-item">Doctorado</a></li>
-                        </ul>
-                    </li>
+                        @if($item->hijos->count() > 0)
 
-                    <li class="nav-item dropdown mx-3">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            Investigación
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item">Proyectos</a></li>
-                            <li><a class="dropdown-item">Publicaciones</a></li>
-                        </ul>
-                    </li>
+                            <li class="nav-item dropdown mx-lg-3">
 
-                    <li class="nav-item dropdown mx-3">
-                        <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                            Vinculación
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item">Convenios</a></li>
-                            <li><a class="dropdown-item">Prácticas</a></li>
-                        </ul>
-                    </li>
+                                <a class="nav-link dropdown-toggle nav-link-custom"
+                                   href="#"
+                                   data-bs-toggle="dropdown">
+
+                                    {{ $item->nombre }}
+
+                                </a>
+
+                                <ul class="dropdown-menu shadow">
+
+                                    @foreach($item->hijos as $hijo)
+
+                                        <li>
+                                            <a class="dropdown-item" href="{{ url($hijo->url) }}">
+                                                {{ $hijo->nombre }}
+                                            </a>
+                                        </li>
+
+                                    @endforeach
+
+                                </ul>
+
+                            </li>
+
+                        @else
+
+                            <li class="nav-item mx-lg-3">
+                                <a class="nav-link nav-link-custom" href="{{ url($item->url) }}">
+                                    {{ $item->nombre }}
+                                </a>
+                            </li>
+
+                        @endif
+
+                    @endforeach
 
                 </ul>
 

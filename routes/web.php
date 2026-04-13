@@ -9,3 +9,6 @@ Route::view('/aspirantes','aspirantes')->name('aspirantes');
 Route::view('/estudiantes','estudiantes')->name('estudiantes');
 Route::view('/docentes','docentes')->name('docentes');
 Route::view('/egresados','egresados')->name('egresados');
+Route::fallback(function () {
+    return response()->view('404', [], 404);
+});

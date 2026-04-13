@@ -6,17 +6,24 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use App\Models\CatImagen;
 
-class Noticia extends Model
+class Banner extends Model
 {
-    use HasFactory; // ← ESTO ERA LO QUE FALTABA
+    use HasFactory;
 
-    protected $table = 'noticias';
+    protected $table = 'banner';
 
     protected $fillable = [
         'titulo',
-        'contenido',
+        'subtitulo',
         'cat_imagen_id',
-        'estatus'
+        'btn1_activo',
+        'btn1_texto',
+        'btn1_url',
+        'btn2_activo',
+        'btn2_texto',
+        'btn2_url',
+        'estatus',
+        'orden'
     ];
 
     public function imagen()
