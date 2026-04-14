@@ -8,7 +8,7 @@ use App\Models\CatImagen;
 
 class Noticia extends Model
 {
-    use HasFactory; // ← ESTO ERA LO QUE FALTABA
+    use HasFactory; //
 
     protected $table = 'noticias';
 

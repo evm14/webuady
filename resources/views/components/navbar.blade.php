@@ -1,29 +1,44 @@
 <div class="bg-white shadow-sm sticky-top">
 
     {{-- HEADER SUPERIOR --}}
-    <div class="container-fluid border-bottom">
-        <div class="row align-items-center py-2 px-3">
+    <div class="container-fluid">
+        <div class="row align-items-center py-3 border-bottom">
 
             {{-- LOGO + LEMA --}}
-            <div class="col-12 col-md-6 d-flex align-items-center justify-content-center justify-content-md-start">
+            <div class="col-md-3 d-flex align-items-center">
 
-                <a href="{{ url('/') }}" class="d-flex align-items-center text-decoration-none">
-                    <img src="{{ asset('img/logo.png') }}" width="70" alt="Logo UADY">
-
-                    <span class="ms-3 fw-semibold text-primary" style="font-size:16px;">
-                        "Luz, Ciencia y Verdad"
-                    </span>
+                <a href="{{ url('/') }}">
+                    <img src="{{ asset('img/logo.png') }}" width="75" alt="Logo UADY">
                 </a>
+
+                <div class="ms-3 text-primary fw-semibold">
+                    "Luz, Ciencia y Verdad"
+                </div>
+
+            </div>
+
+            {{-- BUSCADOR --}}
+            <div class="col-md-6 d-flex justify-content-center">
+
+                <form action="{{ url('/buscar') }}" method="GET" style="width:100%; max-width:400px;">
+                    <input 
+                        type="text" 
+                        name="q"
+                        class="form-control search-bar"
+                        placeholder="Buscar..."
+                        value="{{ request('q') }}"
+                    >
+                </form>
 
             </div>
 
             {{-- ICONOS --}}
-            <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end align-items-center gap-3 mt-2 mt-md-0">
+            <div class="col-md-3 text-end d-flex justify-content-end align-items-center gap-2">
 
-                <i class="bi bi-search fs-5 nav-icon"></i>
-                <i class="bi bi-envelope fs-5 nav-icon"></i>
-                <i class="bi bi-calendar fs-5 nav-icon"></i>
-                <i class="bi bi-person fs-5 nav-icon"></i>
+                <div class="icon-box"><i class="bi bi-laptop"></i></div>
+                <div class="icon-box"><i class="bi bi-envelope"></i></div>
+                <div class="icon-box"><i class="bi bi-calendar"></i></div>
+                <div class="icon-box"><i class="bi bi-person"></i></div>
 
             </div>
 
@@ -113,9 +128,7 @@
                 </ul>
 
             </div>
-
         </div>
-
     </nav>
 
 </div>

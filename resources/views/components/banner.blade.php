@@ -3,8 +3,7 @@
     {{-- INDICADORES --}}
     <div class="carousel-indicators">
         @foreach($slides as $index => $slide)
-            <button
-                type="button"
+            <button type="button"
                 data-bs-target="#bannerUady"
                 data-bs-slide-to="{{ $index }}"
                 class="{{ $index == 0 ? 'active' : '' }}">
@@ -23,10 +22,10 @@
             <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
 
                 <div class="container-fluid p-0">
-                    <div class="row g-0 banner-slide">
+                  <div class="row g-0 banner-slide align-items-stretch">
 
                         {{-- TEXTO --}}
-                        <div class="col-lg-6 banner-bg d-flex align-items-center">
+                        <div class="col-12 col-lg-6 banner-bg d-flex align-items-center">
 
                             <div class="text-white" style="max-width: 600px; margin-left: 40px;">
 
@@ -59,9 +58,9 @@
                         </div>
 
                         {{-- IMAGEN --}}
-                        @if($tieneImagen)
-                            <div class="col-lg-6 banner-image"
-                                 style="background-image:url('{{ asset($slide->imagen->ruta) }}')">
+                       @if($tieneImagen)
+    <div class="col-12 col-lg-6 banner-image"s
+                                style="background-image:url('{{ asset($slide->imagen->ruta) }}')">
                             </div>
                         @endif
 
